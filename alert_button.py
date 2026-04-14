@@ -1,21 +1,17 @@
-{
-    "ok": true,
-    "result": {
-        "message_id": 18,
-        "from": {
-            "id": 8778899049,
-            "is_bot": true,
-            "first_name": "valery",
-            "username": "valerita00_bot"
-        },
-        "chat": {
-            "id": 8365387079,
-            "first_name": "Valery",
-            "last_name": "Mendez",
-            "type": "private"
-        },
-        "date": 1776180458,
-        "text": "Hey, I am Valery.Let's grab some cookies"
-    }
-}
+import requests
+import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(7, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+url = 'https://api.telegram.org/bot8778899049:AAEvALq6vmJXJav90hge9p_iWBehAWkdlcU/sendMessage'
+myobj = {
+    "chat_id": "8365387079",
+    "text": "Hey, I am Valery.Let\'s grab some cookies"
+}
+while True:
+    if GPIO.input(7) == GPIO.HIGH:
+        x = requests.post(url, json = myobj)
+        print(x.text)
+
+        print("Someone pressed the post button!")
