@@ -1,3 +1,4 @@
+import time
 import requests
 import RPi.GPIO as GPIO
 
@@ -9,9 +10,15 @@ myobj = {
     "chat_id": "8365387079",
     "text": "Hey, I am Valery.Let\'s grab some cookies"
 }
+button_pressed = False
 while True:
-    if GPIO.input(7) == GPIO.HIGH:
+    if GPIO.input(7) == GPIO.HIGH and not button_pressed:
         x = requests.post(url, json = myobj)
+        button_pressed = True
         print(x.text)
 
         print("Someone pressed the post button!")
+    elif GPIO.input(7) == GPIO.LOW:
+        button_pressed = False
+    time.sleep(0.1)
+
