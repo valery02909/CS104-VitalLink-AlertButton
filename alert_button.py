@@ -13,8 +13,8 @@ myobj = {
 button_pressed = False
 while True:
     if GPIO.input(7) == GPIO.HIGH and not button_pressed:
-        x = requests.post(url, json = myobj)
         button_pressed = True
+        x = requests.post(url, json = myobj)
         print(x.text)
 
         print("Someone pressed the post button!")
