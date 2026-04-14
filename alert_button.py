@@ -17,7 +17,6 @@ while True:
         x = requests.post(url, json = myobj)
         print(x.text)
 
-        print("Someone pressed the post button!")
     elif GPIO.input(7) == GPIO.LOW:
         button_pressed = False
     time.sleep(0.1)
